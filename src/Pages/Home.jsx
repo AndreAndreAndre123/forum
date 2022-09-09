@@ -10,7 +10,7 @@ const Post = () => {
     const [data, setData] = useState(null);
     useEffect( () => {
         //Om vi vill använda oss utav axios som vi laddat ner med "npm install axios"
-         axios.get(` https://jsonplaceholder.typicode.com/posts/`)
+         axios.get(` https://jsonplaceholder.typicode.com/posts`)
             .then(res => setData(res.data))
             
       
@@ -21,7 +21,7 @@ const Post = () => {
     <div>
         {data ?  data.map((d) => {
             return(
-            <h2 id={d.id}>Titel: {<Link to="/renderposts/1"> <p>Title: {d.title}</p></Link>}</h2>
+            <h2 id={d.id}>Titel: {<Link to="/renderposts" state={ d }> <p>Title: {d.title}</p></Link>}</h2>
             )
 
         }) : <h3>Loading...</h3>}

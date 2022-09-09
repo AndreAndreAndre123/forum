@@ -23,7 +23,7 @@ function App() {
       </nav>
       <Routes>
       <Route path="/" element= {<Home />} />
-      <Route path="/renderposts/:id" element= {<RenderPost />} />
+      <Route path="/renderposts" element= {<RenderPost />} />
      
 
       </Routes>
