@@ -7,6 +7,7 @@ import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 const Post = () => {
     // Vi kan hämta id-värdet från den URL med hjälp utav useParams (för att vi har :id i vår route i App.js)
     const {id} = useParams()
+    
     const [data, setData] = useState(null);
     useEffect( () => {
         //Om vi vill använda oss utav axios som vi laddat ner med "npm install axios"
@@ -15,13 +16,19 @@ const Post = () => {
             
       
     }, []);
-    console.log(data)
+ console.log(data);
   return (
 
     <div>
-        {data ?  data.map((d) => {
+        {data ?  data.map((d, i) => {
             return(
-            <h2 id={d.id}>Titel: {<Link to="/renderposts" state={ d }> <p>Title: {d.title}</p></Link>}</h2>
+            <div id={d.id} key={i} className="title-div">
+
+               {<Link to={`/renderpost/${d.id}`} state={ d } className="title-div-title">
+                 <h2 className="title-div-title">{d.title}</h2>
+               </Link>}
+               
+            </div>
             )
 
         }) : <h3>Loading...</h3>}

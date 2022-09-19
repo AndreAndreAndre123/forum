@@ -5,38 +5,51 @@ import Home from "./Home"
 import axios from 'axios'
 
 const Post = () => {
-
+    const {id} = useParams();
+    const [article, setArticle] = useState(null)
     const [data, setData] = useState(null);
     useEffect( () => {
-        //Om vi vill använda oss utav axios som vi laddat ner med "npm install axios"
+        
          axios.get(`https://jsonplaceholder.typicode.com/comments`)
             .then(res => setData(res.data))
+
+        axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+        .then(res => setArticle(res.data))
             
       
     }, []);
-    console.log(data);
+    
+    //testar location
     const location = useLocation();
-    console.log(location)
+    console.log(data);
+    /* console.log(location); */
 
   return (
-    // Glöm inte att kolla att vi har data innan vi försöker skriva ut värden från data-objektet
-    <div>
-        <h3>{location.state.title}</h3>
-        <p>{location.state.body}</p>
-
+    <>
+    <div className="post">
+        <div className="post-title">
+            <h1 className="post-h1">{article?.title}</h1>
+            <h2 className="post-h1">{article?.body}</h2>
+        </div>
         {
-            data ? data.map((d) => {
-                if(d.postId == location.state.id){
+            data && data.map((d) => {
+                if(d.postId == id){
                     return (
-                        <div>
-                            <small>{d.name}</small>
+                        <div className="comment">
+                            <div className="comment-name-email">
+                                <h3>commentName: {d.name}</h3>
+                                <h4>commentEmail: {d.email}</h4>
+                            </div>
+
+                            <p className="comment-body">{d.body}</p>
                         </div>
                     )
                 }
 
-            }) : undefined
+            }) 
         }
     </div>
+    </>
   )
 }
 

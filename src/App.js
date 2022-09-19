@@ -16,14 +16,14 @@ function App() {
       
       <nav>
         
-      <Link to="/">
-          <p>home</p>
+      <Link to="/" className='home'>
+          <h1 className='home'>home</h1>
       </Link>
       
       </nav>
       <Routes>
       <Route path="/" element= {<Home />} />
-      <Route path="/renderposts" element= {<RenderPost />} />
+      <Route path={`/renderpost/:id`} element= {<RenderPost />} />
      
 
       </Routes>
