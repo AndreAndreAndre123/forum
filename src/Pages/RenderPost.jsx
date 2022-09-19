@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react"
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import Home from "./Home"
+import { useParams } from "react-router-dom";
+
 import axios from 'axios'
 
 const Post = () => {
@@ -19,10 +19,7 @@ const Post = () => {
       
     }, []);
     
-    //testar location
-    const location = useLocation();
-    console.log(data);
-    /* console.log(location); */
+
 
   return (
     <>
@@ -54,13 +51,3 @@ const Post = () => {
 }
 
 export default Post
-
-/* const Post = () =>{
-    return(
-        <div>
-            adfafsd
-        </div>
-    )
-}
-
-export default Post; */
